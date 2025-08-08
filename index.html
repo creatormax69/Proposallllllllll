@@ -1,223 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>I have a Secret for You</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    * {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    html, body {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      background: linear-gradient(120deg, #0f0f0f, #1a1a1a);
-      color: white;
-    }
-    section {
-      min-height: 100vh;
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    h1, h2, p {
-      margin-bottom: 1rem;
-    }
-    .btn {
-      background: white;
-      color: black;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: 0.4s ease;
-    }
-    .btn:hover {
-      background: #222;
-      color: white;
-      transform: scale(1.05);
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease-out;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    input[type="text"] {
-      padding: 0.7rem;
-      border-radius: 10px;
-      border: none;
-      margin-top: 1rem;
-      font-size: 1rem;
-      width: 80%;
-    }
-    #final-message {
-      opacity: 0;
-      transition: all 1s ease;
-    }
-    #final-message.reveal {
-      opacity: 1;
-    }
-    .final-section {
-      background: linear-gradient(145deg, #0e0e0e, #1b1b1b);
-      margin: 2rem 0;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 60, 130, 0.2);
-      max-width: 600px;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(#ff3c82aa 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.03;
-      z-index: -1;
-      animation: pulse 10s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hidden Proposal</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #111; color: white; padding: 20px; }
+  section { margin: 50px 0; padding: 20px; border: 1px solid #444; border-radius: 8px; background: #222; }
+  .btn { background: #ff0077; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+  .btn:hover { background: #ff3399; }
+  .hidden { display: none; }
+</style>
 </head>
 <body>
 
-  <!-- Intro Section -->
-  <section id="intro" class="fade-in">
-    <h1>I have a secret for you Vedapriya...</h1>
-    <p>This isn’t just a message — it’s my way of showing the love I truly have for you.</p>
-    <a href="#puzzle1a" class="btn">Start</a>
-  </section>
+<h1>Proposal Puzzle</h1>
 
-  <!-- Puzzle 1A: Guitar -->
-  <section id="puzzle1a" class="fade-in">
-    <h2>Clue 1: 🎸</h2>
-    <p>I play guitar. Any idea who I might be?</p>
-    <input type="text" id="input1a" placeholder="Guess a name..." />
-    <button class="btn" onclick="showResult('result1a','puzzle1b')">Submit</button>
-    <p id="result1a"></p>
-  </section>
+<!-- Question 1 -->
+<section id="q1">
+  <p>If Anandapadmanabhan proposed to you, would you accept?</p>
+  <input type="text" id="a1" placeholder="Your answer..." required>
+  <button class="btn" onclick="sendAnswer('https://usebasin.com/f/c616b6478fce','a1','q2')">Send Response</button>
+</section>
 
-  <!-- Puzzle 1B: Code -->
-  <section id="puzzle1b" class="fade-in">
-    <h2>Clue 2: 💻</h2>
-    <p>I also code.<br>Still unsure?</p>
-    <input type="text" id="input1b" placeholder="Guess again..." />
-    <button class="btn" onclick="showResult('result1b','puzzle1c')">Submit</button>
-    <p id="result1b"></p>
-  </section>
+<!-- Question 2 -->
+<section id="q2" class="hidden">
+  <p>If Vasudev proposed to you, would you accept?</p>
+  <input type="text" id="a2" placeholder="Your answer..." required>
+  <button class="btn" onclick="sendAnswer('https://usebasin.com/f/52e5fef30f2f','a2','q3')">Send Response</button>
+</section>
 
-  <!-- Puzzle 1C: Class 8F -->
-  <section id="puzzle1c" class="fade-in">
-    <h2>Clue 3: 🏫</h2>
-    <p>I was in 8F last year.<br>Now do you remember?</p>
-    <input type="text" id="input1c" placeholder="Try a final name..." />
-    <button class="btn" onclick="showResult('result1c','final-question1')">Submit</button>
-    <p id="result1c"></p>
-  </section>
+<!-- Question 3 -->
+<section id="q3" class="hidden">
+  <p>If Ananthashayi proposed to you, would you accept?</p>
+  <input type="text" id="a3" placeholder="Your answer..." required>
+  <button class="btn" onclick="sendAnswer('https://usebasin.com/f/6cadd7daab12','a3','q4')">Send Response</button>
+</section>
 
-  <!-- Proposal Questions -->
-  <section id="final-question1" class="final-section fade-in">
-    <p>Will you accept the proposal if Anandapadmanabhan proposed to you?</p>
-    <input type="text" id="answer1" placeholder="Type your honest answer..." required>
-    <button class="btn" onclick="sendAnswer('https://usebasin.com/f/c616b6478fce','answer1','final-question2')">Send Response</button>
-  </section>
+<!-- Question 4 -->
+<section id="q4" class="hidden">
+  <p>If Ritvik proposed to you, would you accept?</p>
+  <input type="text" id="a4" placeholder="Your answer..." required>
+  <button class="btn" onclick="sendAnswer('https://usebasin.com/f/f9df72a3f0c8','a4','final')">Send Response</button>
+</section>
 
-  <section id="final-question2" class="final-section fade-in">
-    <p>Will you accept the proposal if Vasudev proposed to you?</p>
-    <input type="text" id="answer2" placeholder="Type your honest answer..." required>
-    <button class="btn" onclick="sendAnswer('https://usebasin.com/f/52e5fef30f2f','answer2','final-question3')">Send Response</button>
-  </section>
+<!-- Final Reveal -->
+<section id="final" class="hidden">
+  <h2>My name has 4 A's in it...</h2>
+</section>
 
-  <section id="final-question3" class="final-section fade-in">
-    <p>Will you accept the proposal if Ananthashayi proposed to you?</p>
-    <input type="text" id="answer3" placeholder="Type your honest answer..." required>
-    <button class="btn" onclick="sendAnswer('https://usebasin.com/f/6cadd7daab12','answer3','final-question4')">Send Response</button>
-  </section>
+<script>
+function sendAnswer(url, inputId, nextId) {
+  const answer = document.getElementById(inputId).value.trim();
+  if (!answer) {
+    alert("Please type an answer first.");
+    return;
+  }
 
-  <section id="final-question4" class="final-section fade-in">
-    <p>Will you accept the proposal if Ritvik R proposed to you?</p>
-    <input type="text" id="answer4" placeholder="Type your honest answer..." required>
-    <button class="btn" onclick="sendAnswer('https://usebasin.com/f/f9df72a3f0c8','answer4','final')">Send Response</button>
-  </section>
+  // Send data secretly to Basin
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "response=" + encodeURIComponent(answer)
+  })
+  .then(() => {
+    // Hide current section
+    document.getElementById(inputId).parentElement.classList.add("hidden");
+    // Show next section
+    document.getElementById(nextId).classList.remove("hidden");
+    // Smooth scroll
+    document.getElementById(nextId).scrollIntoView({ behavior: "smooth" });
+  })
+  .catch(err => {
+    console.error("Error sending to Basin:", err);
+    alert("Something went wrong sending your answer.");
+  });
+}
+</script>
 
-  <!-- Final Section -->
-  <section id="final" class="fade-in">
-    <div id="final-message">
-      <h2>It’s me…</h2>
-      <h1 style="letter-spacing: 10px;">I have a clue for you, find it out</h1>
-      <p>You might have guessed it... or maybe not.</p>
-      <p style="opacity: 0.6;">Hint: My name has <strong>4 A’s</strong> in it. 🖤</p>
-    </div>
-  </section>
-
-  <!-- Background Music -->
-  <audio id="bgMusic" autoplay loop hidden>
-    <source src="jo-tum-mere-ho.mp3" type="audio/mpeg" />
-  </audio>
-
-  <script>
-    // Fade-in on scroll
-    const fadeIns = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.3 });
-    fadeIns.forEach(el => observer.observe(el));
-
-    // Show puzzle result and move to next
-    function showResult(resultId, nextId) {
-      document.getElementById(resultId).textContent = "You might be right... or you might be wrong.";
-      setTimeout(() => {
-        document.querySelector('#' + nextId).scrollIntoView({ behavior: 'smooth' });
-      }, 1000);
-    }
-
-    // Send answer to Basin without leaving page
-    function sendAnswer(url, inputId, nextId) {
-      const answer = document.getElementById(inputId).value.trim();
-      if (!answer) {
-        alert("Please type an answer first.");
-        return;
-      }
-      fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "response=" + encodeURIComponent(answer)
-      }).then(() => {
-        setTimeout(() => {
-          document.querySelector('#' + nextId).scrollIntoView({ behavior: 'smooth' });
-          if (nextId === 'final') {
-            setTimeout(() => document.getElementById('final-message').classList.add('reveal'), 1000);
-          }
-        }, 500);
-      }).catch(err => {
-        console.error("Error sending to Basin:", err);
-      });
-    }
-
-    // Music repeat handler
-    const music = document.getElementById("bgMusic");
-    if (music) {
-      music.addEventListener("ended", function () {
-        this.currentTime = 0;
-        this.play();
-      });
-    }
-  </script>
 </body>
 </html>
