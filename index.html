@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>I have Secret for You</title>
+  <title>I have a Secret for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * {
@@ -58,6 +58,7 @@
       border: none;
       margin-top: 1rem;
       font-size: 1rem;
+      width: 80%;
     }
     #final-message {
       opacity: 0;
@@ -65,6 +66,14 @@
     }
     #final-message.reveal {
       opacity: 1;
+    }
+    .final-section {
+      background: linear-gradient(145deg, #0e0e0e, #1b1b1b);
+      margin: 2rem 0;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 60, 130, 0.2);
+      max-width: 600px;
     }
     body::before {
       content: '';
@@ -89,7 +98,7 @@
   <!-- Intro Section -->
   <section id="intro" class="fade-in">
     <h1>I have a secret for you Vedapriya...</h1>
-    <p>This isn’t just a message. It is my way of expressing the true LOVE that I have for YOUUU.</p>
+    <p>This isn’t just a message — it’s my way of showing the love I truly have for you.</p>
     <a href="#puzzle1a" class="btn">Start</a>
   </section>
 
@@ -98,16 +107,16 @@
     <h2>Clue 1: 🎸</h2>
     <p>I play guitar. Any idea who I might be?</p>
     <input type="text" id="input1a" placeholder="Guess a name..." />
-    <button class="btn" onclick="showResult1A()">Submit</button>
+    <button class="btn" onclick="showResult('result1a','puzzle1b')">Submit</button>
     <p id="result1a"></p>
   </section>
 
   <!-- Puzzle 1B: Code -->
   <section id="puzzle1b" class="fade-in">
     <h2>Clue 2: 💻</h2>
-    <p>Unlike someone else… I also code.<br>Still unsure?</p>
+    <p>I also code.<br>Still unsure?</p>
     <input type="text" id="input1b" placeholder="Guess again..." />
-    <button class="btn" onclick="showResult1B()">Submit</button>
+    <button class="btn" onclick="showResult('result1b','puzzle1c')">Submit</button>
     <p id="result1b"></p>
   </section>
 
@@ -116,83 +125,60 @@
     <h2>Clue 3: 🏫</h2>
     <p>I was in 8F last year.<br>Now do you remember?</p>
     <input type="text" id="input1c" placeholder="Try a final name..." />
-    <button class="btn" onclick="showResult1C()">Submit</button>
+    <button class="btn" onclick="showResult('result1c','final-question1')">Submit</button>
     <p id="result1c"></p>
   </section>
 
-  <section id="questions" class="final-section">
-  <h2>I have some more questions...</h2>
- <p>please scroll to find some more questions to solve the puzzle</p>
- 
+  <!-- Proposal Questions -->
+  <section id="final-question1" class="final-section fade-in">
+    <p>Will you accept the proposal if Anandapadmanabhan proposed to you?</p>
+    <form action="https://usebasin.com/f/c616b6478fce" method="POST" onsubmit="nextQuestion(event,'final-question2')">
+      <input type="text" name="response" placeholder="Type your honest answer..." required>
+      <button type="submit" class="btn">Send Response</button>
+    </form>
   </section>
 
-   <section id="question1a" class="final-section">
-  <p>Will you accept the proposal if Anandapadmanabhan proposed to you?</p>
-  <p>please scroll to find some more questions to solve the puzzle</p>    
- <form action="https://usebasin.com/f/c616b6478fce" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://thankyou-page.com">
-    <input type="text" name="response" placeholder="Type your honest answer..." required>
-    <button type="submit">Send Response</button>
-  </form>
- 
-</section>
+  <section id="final-question2" class="final-section fade-in">
+    <p>Will you accept the proposal if Vasudev proposed to you?</p>
+    <form action="https://usebasin.com/f/52e5fef30f2f" method="POST" onsubmit="nextQuestion(event,'final-question3')">
+      <input type="text" name="response" placeholder="Type your honest answer..." required>
+      <button type="submit" class="btn">Send Response</button>
+    </form>
+  </section>
 
-   <section id="question1b" class="final-section">
-  <p>Will you accept the proposal if Vasudev proposed to you?</p>
-  <p>please scroll to find some more questions to solve the puzzle</p>
- <form action="https://usebasin.com/f/52e5fef30f2f" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://thankyou-page.com">
-    <input type="text" name="response" placeholder="Type your honest answer..." required>
-    <button type="submit">Send Response</button>
-  </form>
- 
-</section>
+  <section id="final-question3" class="final-section fade-in">
+    <p>Will you accept the proposal if Ananthashayi proposed to you?</p>
+    <form action="https://usebasin.com/f/6cadd7daab12" method="POST" onsubmit="nextQuestion(event,'final-question4')">
+      <input type="text" name="response" placeholder="Type your honest answer..." required>
+      <button type="submit" class="btn">Send Response</button>
+    </form>
+  </section>
 
-    <section id="question1c" class="final-section">
-  <p>Will you accept the proposal if Ananthashayi proposed to you?</p>
-     <p>please scroll to solve the last question to solve the puzzle</p> 
-   <form action="https://usebasin.com/f/6cadd7daab12" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://thankyou-page.com">
-    <input type="text" name="response" placeholder="Type your honest answer..." required>
-    <button type="submit">Send Response</button>
-  </form>
- 
-</section>
-
-    <section id="question1d" class="final-section">
-  <p>Will you accept the proposal if Ritvik R proposed to you?</p>
- <form action="https://usebasin.com/f/f9df72a3f0c8" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://thankyou-page.com">
-    <input type="text" name="response" placeholder="Type your honest answer..." required>
-    <button type="submit">Send Response</button>
-  </form>
- 
-</section>
-
+  <section id="final-question4" class="final-section fade-in">
+    <p>Will you accept the proposal if Ritvik R proposed to you?</p>
+    <form action="https://usebasin.com/f/f9df72a3f0c8" method="POST" onsubmit="nextQuestion(event,'final')">
+      <input type="text" name="response" placeholder="Type your honest answer..." required>
+      <button type="submit" class="btn">Send Response</button>
+    </form>
+  </section>
 
   <!-- Final Section -->
   <section id="final" class="fade-in">
     <div id="final-message">
       <h2>It’s me…</h2>
-      <h1 style="letter-spacing: 10px;"> I have a clue for U, find it out</h1>
+      <h1 style="letter-spacing: 10px;">I have a clue for you, find it out</h1>
       <p>You might have guessed it... or maybe not.</p>
       <p style="opacity: 0.6;">Hint: My name has <strong>4 A’s</strong> in it. 🖤</p>
-       <p>Scroll to the bottom</p>
     </div>
   </section>
 
-  <!-- Background Music (Add manually) -->
+  <!-- Background Music -->
   <audio id="bgMusic" autoplay loop hidden>
     <source src="jo-tum-mere-ho.mp3" type="audio/mpeg" />
-    Your browser does not support the audio tag.
   </audio>
 
   <script>
-    // Fade-in on scroll
+    // Fade-in effect
     const fadeIns = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -201,32 +187,27 @@
     }, { threshold: 0.3 });
     fadeIns.forEach(el => observer.observe(el));
 
-    // Puzzle responses without correctness check
-    function showResult1A() {
-      document.getElementById("result1a").textContent = "You might be right... or you might be wrong.";
+    // Show puzzle result and move to next
+    function showResult(resultId, nextId) {
+      document.getElementById(resultId).textContent = "You might be right... or you might be wrong.";
       setTimeout(() => {
-        document.querySelector('#puzzle1b').scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('#' + nextId).scrollIntoView({ behavior: 'smooth' });
       }, 1000);
     }
 
-    function showResult1B() {
-      document.getElementById("result1b").textContent = "You might be right... or you might be wrong.";
+    // Go to next question after form submit
+    function nextQuestion(event, nextId) {
+      event.preventDefault(); // prevent instant reload
       setTimeout(() => {
-        document.querySelector('#puzzle1c').scrollIntoView({ behavior: 'smooth' });
-      }, 1000);
+        document.querySelector('#' + nextId).scrollIntoView({ behavior: 'smooth' });
+        if (nextId === 'final') {
+          setTimeout(() => document.getElementById('final-message').classList.add('reveal'), 1000);
+        }
+      }, 500);
+      event.target.submit(); // actually send the form
     }
 
-    function showResult1C() {
-      document.getElementById("result1c").textContent = "You might be right... or you might be wrong.";
-      setTimeout(() => {
-        document.querySelector('#final').scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => {
-          document.getElementById('final-message').classList.add('reveal');
-        }, 1000);
-      }, 1000);
-    }
-
-    // Music repeat handler (if needed)
+    // Loop music if needed
     const music = document.getElementById("bgMusic");
     if (music) {
       music.addEventListener("ended", function () {
@@ -235,10 +216,5 @@
       });
     }
   </script>
-
-
-
 </body>
-
 </html>
-
