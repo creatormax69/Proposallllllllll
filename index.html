@@ -3,53 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hidden Proposal</title>
+<title>Hidden Identity Proposal</title>
 <style>
-  body { font-family: Arial, sans-serif; background: #111; color: white; padding: 20px; }
-  section { margin: 50px 0; padding: 20px; border: 1px solid #444; border-radius: 8px; background: #222; }
-  .btn { background: #ff0077; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
-  .btn:hover { background: #ff3399; }
-  .hidden { display: none; }
+  body {
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+  section {
+    display: none;
+    margin-top: 50px;
+  }
+  section.active {
+    display: block;
+  }
+  .btn {
+    background: gold;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .final-message {
+    display: none;
+    font-size: 24px;
+    margin-top: 50px;
+  }
+  .final-message.reveal {
+    display: block;
+  }
 </style>
 </head>
 <body>
 
-<h1>Proposal Puzzle</h1>
+<h1>💌 A Little Puzzle for You...</h1>
 
-<!-- Question 1 -->
+<!-- Clue Section -->
+<section id="clue" class="active">
+  <p>I was in class 8F last year...</p>
+  <button class="btn" onclick="nextSection('q1')">Next</button>
+</section>
+
+<!-- Q1 -->
 <section id="q1">
   <p>If Anandapadmanabhan proposed to you, would you accept?</p>
-  <input type="text" id="a1" placeholder="Your answer..." required>
+  <input type="text" id="a1" placeholder="Type your answer...">
   <button class="btn" onclick="sendAnswer('https://usebasin.com/f/c616b6478fce','a1','q2')">Send Response</button>
 </section>
 
-<!-- Question 2 -->
-<section id="q2" class="hidden">
+<!-- Q2 -->
+<section id="q2">
   <p>If Vasudev proposed to you, would you accept?</p>
-  <input type="text" id="a2" placeholder="Your answer..." required>
+  <input type="text" id="a2" placeholder="Type your answer...">
   <button class="btn" onclick="sendAnswer('https://usebasin.com/f/52e5fef30f2f','a2','q3')">Send Response</button>
 </section>
 
-<!-- Question 3 -->
-<section id="q3" class="hidden">
+<!-- Q3 -->
+<section id="q3">
   <p>If Ananthashayi proposed to you, would you accept?</p>
-  <input type="text" id="a3" placeholder="Your answer..." required>
+  <input type="text" id="a3" placeholder="Type your answer...">
   <button class="btn" onclick="sendAnswer('https://usebasin.com/f/6cadd7daab12','a3','q4')">Send Response</button>
 </section>
 
-<!-- Question 4 -->
-<section id="q4" class="hidden">
+<!-- Q4 -->
+<section id="q4">
   <p>If Ritvik proposed to you, would you accept?</p>
-  <input type="text" id="a4" placeholder="Your answer..." required>
+  <input type="text" id="a4" placeholder="Type your answer...">
   <button class="btn" onclick="sendAnswer('https://usebasin.com/f/f9df72a3f0c8','a4','final')">Send Response</button>
 </section>
 
-<!-- Final Reveal -->
-<section id="final" class="hidden">
-  <h2>My name has 4 A's in it...</h2>
+<!-- Final -->
+<section id="final">
+  <p>💡 My name has 4 A's in it...</p>
+  <div class="final-message" id="final-message">✨ The End... or the Beginning ✨</div>
 </section>
 
 <script>
+function nextSection(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
 function sendAnswer(url, inputId, nextId) {
   const answer = document.getElementById(inputId).value.trim();
   if (!answer) {
@@ -57,19 +94,18 @@ function sendAnswer(url, inputId, nextId) {
     return;
   }
 
-  // Send data secretly to Basin
+  // Send answer to Basin without leaving page
   fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: "response=" + encodeURIComponent(answer)
   })
   .then(() => {
-    // Hide current section
-    document.getElementById(inputId).parentElement.classList.add("hidden");
-    // Show next section
-    document.getElementById(nextId).classList.remove("hidden");
-    // Smooth scroll
-    document.getElementById(nextId).scrollIntoView({ behavior: "smooth" });
+    // Go to next section
+    nextSection(nextId);
+    if (nextId === "final") {
+      setTimeout(() => document.getElementById("final-message").classList.add("reveal"), 1000);
+    }
   })
   .catch(err => {
     console.error("Error sending to Basin:", err);
